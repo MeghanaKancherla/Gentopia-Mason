@@ -1,4 +1,4 @@
-from pypdf import PdfReader
+from PyPDF2 import PdfReader
 from io import BytesIO
 from pathlib import Path
 from typing import AnyStr, Optional, Type
