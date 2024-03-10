@@ -1,4 +1,4 @@
-from pypdf import PdfFileReader
+from pypdf import PdfReader
 from io import BytesIO
 from pathlib import Path
 from typing import AnyStr, Optional, Type
@@ -35,7 +35,7 @@ class SearchPDFTool(BaseTool):
             return open(Path(file_path), 'rb')
 
     def _extract_text(self, file, char_limit=9250): # setting the limit since the access to read file is only for 10000 characters
-        reader = PdfFileReader(file)
+        reader = PdfReader(file)
         text = ""
         for page_num in range(reader.getNumPages()):
             page = reader.getPage(page_num)
