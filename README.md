@@ -65,3 +65,11 @@ Sometimes an agent can upset you. To wipe it out completely,
 ./delete_agent <your_agent_name> 
 ```
 ## Implementing GoogleSearch and PDF reader
+In this trail, I have implemented the GoogleSearch method within the Scholar agent, since the google_search is already defined under tools, I had to only use this in the agent.yaml file. 
+
+For PDF reader, I had to install and use the PyPDF2 library. I implemented the SearchPDFTool code for reading the PDF. 
+This is based on the `scholar` agent we have created in the pool. As before, in this demo we simply clone it:
+```
+./clone_agent scholar <your_agent_name> 
+```
+This will have both the GoogleSearch and PDF Reader functionality. 
