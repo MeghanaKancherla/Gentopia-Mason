@@ -48,7 +48,7 @@ class SearchPDFTool(BaseTool):
     async def _arun(self, *args: Any, **kwargs: Any) -> Any:
         raise NotImplementedError
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     pdf_url = "https://file.pdf"  
     pdf = SearchPDFTool()._run(url=pdf_url)
     
