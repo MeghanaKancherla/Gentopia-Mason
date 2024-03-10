@@ -25,3 +25,5 @@ plugins:
   - name: search_related_paper
   - name: search_cite_paper
   - name: write_file
+  - name: google_search
+  - name: search_paper_pdf
