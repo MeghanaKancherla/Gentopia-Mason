@@ -194,6 +194,7 @@ class SearchSinglePaper(BaseTool):
                 "abstract": it['bib']['abstract'],
                 'url': it['pub_url'],
                 'citation': it['num_citations'],
+                'pdf_url': it.get('eprint_url', 'Not available'),
                 }))
         if not ans:
             return "no further information available"
