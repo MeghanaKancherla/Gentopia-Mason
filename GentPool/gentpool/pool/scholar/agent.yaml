@@ -8,7 +8,7 @@ target_tasks:
   - find papers that cite the target paper
   - find papers that relevant to a topic
   - find scholars that have the queried research interests
-prompt_template: !prompt VanillaPrompt
+prompt_template: !prompt GoogleSearchPrompt
 llm: 
   model_name: gpt-4-0613
   # model_name: gpt-4
