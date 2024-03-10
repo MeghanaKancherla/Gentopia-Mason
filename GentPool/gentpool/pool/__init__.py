@@ -11,3 +11,5 @@ from .vanilla-ziyu import *
 from .scholar-ziyu import *
 from .pdf_scholar import *
 from .GentCopy import *
+from .meg_agent import *
+from .my_llm_agent import *
