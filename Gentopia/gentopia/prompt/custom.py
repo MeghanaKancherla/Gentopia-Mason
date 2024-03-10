@@ -12,3 +12,9 @@ class GoogleSearchPrompt(PromptTemplate):
     def generate_response(self, query):
         if 'search' in query:
             return self.handle_search_query(query)
+
+
+GooglePrompt = GoogleSearchPrompt(PromptTemplate(
+    input_variables=["instruction"],
+    template="""{instruction}"""
+))
