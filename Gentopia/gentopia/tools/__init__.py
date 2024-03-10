@@ -44,7 +44,7 @@ def load_tools(name: str) -> BaseTool:
         "search_single_paper": SearchSinglePaper,
         "search_related_paper": SearchRelatedPaper,
         "search_cite_paper": SearchCitePaper,
-        "search_paper_pdf": SearchPDFTool,
+        "pdf_search_paper": SearchPDFTool,
     }
     if name not in name2tool:
         raise NotImplementedError
