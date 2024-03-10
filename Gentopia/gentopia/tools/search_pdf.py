@@ -37,9 +37,8 @@ class SearchPDFTool(BaseTool):
     def _extract_text(self, file, char_limit=9250): # setting the limit since the access to read file is only for 10000 characters
         reader = PdfReader(file)
         text = ""
-        for page_num in range(len(reader.pages)):
-            page = reader.pages
-            page_text = page.extractText() or ""
+        for page_num in reader.pages:
+            page_text = page_num.extractText() or ""
             if len(text) + len(page_text) > char_limit:
                 text = text + page_text[:char_limit - len(text)]
                 break
