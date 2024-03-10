@@ -38,7 +38,7 @@ class SearchPDFTool(BaseTool):
         reader = PdfReader(file)
         text = ""
         for page_num in reader.pages:
-            page_text = page_num.extractText() or ""
+            page_text = page_num.extract_text() or ""
             if len(text) + len(page_text) > char_limit:
                 text = text + page_text[:char_limit - len(text)]
                 break
