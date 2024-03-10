@@ -1,23 +1,42 @@
-from PyPDF2 import PdfReader
-from io import BytesIO
 from pathlib import Path
 from typing import AnyStr, Optional, Type
+from PyPDF2 import PdfReader
 from gentopia.tools.basetool import *
 from pydantic import Field
+from io import BytesIO
 import requests
 
-class SearchPDFArgs(BaseModel):
-    url: str = Field(..., description="PDF URL to be read")
+
+class ReadPDFFromURLArgs(BaseModel):
+    url: str = Field(..., description="Reads the URL PDF")
 
 class SearchPDFTool(BaseTool):
-    name = "SearchPDF"
-    description = "Reads and searches the contents of a PDF file from thr URL"
-    args_schema: Optional[Type[BaseModel]] = SearchPDFArgs
+    """Reads the URL PDF"""
+
+    name = "ReadPDF"
+    description = "Reads the URL PDF"
+    args_schema: Optional[Type[BaseModel]] = ReadPDFFromURLArgs
 
     def _run(self, file_path: str = None, url: str = None) -> AnyStr:
         try:
-            file = self._load_pdf(file_path, url)
-            text = self._extract_text(file)
+            if url:
+                response = requests.get(url)
+                response.raise_for_status()
+                file = BytesIO(response.content)
+            else:
+                pdf_path = Path(file_path)
+                file = open(pdf_path, 'rb')
+            
+            reader = PdfReader(file)
+            text = ""
+            for page in reader.pages:
+                page_text = page.extract_text() or ""
+                if len(text) + len(page_text) > 9000:
+                    text += page_text[:9000 - len(text)]
+                    break
+                else:
+                    text += page_text
+            
             file.close()
             return text
 
@@ -26,31 +45,11 @@ class SearchPDFTool(BaseTool):
         except Exception as e:
             return f"Error: {e}"
 
-    def _load_pdf(self, file_path: str = None, url: str = None):
-        if url:
-            response = requests.get(url)
-            response.raise_for_status()
-            return BytesIO(response.content)
-        else:
-            return open(Path(file_path), 'rb')
-
-    def _extract_text(self, file, char_limit=9250): # setting the limit since the access to read file is only for 10000 characters
-        reader = PdfReader(file)
-        text = ""
-        for page_num in range(reader.getNumPages()):
-            page = reader.getPage(page_num)
-            page_text = page.extractText() or ""
-            if len(text) + len(page_text) > char_limit:
-                text = text + page_text[:char_limit - len(text)]
-                break
-            else:
-                text = text + page_text
-        return text
-
     async def _arun(self, *args: Any, **kwargs: Any) -> Any:
         raise NotImplementedError
 
-if __name__ == "__main__":
-    pdf_url = "abc.pdf" 
-    res = SearchPDFTool()._run(url=pdf_url)
-    print(res)
+if _name_ == "_main_":
+    pdf_url = "https://file.pdf"  
+    pdf = SearchPDFTool()._run(url=pdf_url)
+    
+    print(pdf)
