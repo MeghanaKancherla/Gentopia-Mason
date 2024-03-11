@@ -89,5 +89,5 @@ You can now run your agent via:
 ```
 python assemble.py <your_agent_name>
 ```
-
+The sample outputs (wiki.wav and calcu_goolgle.wav) of the generated voice can be viewed in the home directory. These are two examples generated for wikipedia search and a calculator with google search. 
 
