@@ -67,9 +67,24 @@ Sometimes an agent can upset you. To wipe it out completely,
 ## Implementing GoogleSearch and PDF reader
 In this trail, I have implemented the GoogleSearch method within the Scholar agent, since the google_search is already defined under tools, I had to only use this in the agent.yaml file. 
 
-For PDF reader, I had to install and use the PyPDF2 library. I implemented the SearchPDFTool code for reading the PDF. 
-This is based on the `scholar` agent we have created in the pool. As before, in this demo we simply clone it:
+```
+pip install PyPDF2
+```
 ```
 ./clone_agent scholar <your_agent_name> 
 ```
 This will have both the GoogleSearch and PDF Reader functionality. 
+
+## Bonus
+GentCopy is an agent, it can search through wikipedia and give results, and it calculates math problems and gives solutions, it also converts text to speech. 
+The GentCopy can be cloned.
+
+```
+./clone_agent <your_agent_name> 
+```
+You can now run your agent via:
+```
+python assemble.py <your_agent_name>
+```
+
+
