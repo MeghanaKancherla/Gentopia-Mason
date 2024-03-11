@@ -81,7 +81,7 @@ GentCopy is an agent, it can search through wikipedia and give results, and it c
 The GentCopy can be cloned.
 
 ```
-./clone_agent <your_agent_name> 
+./clone_agent GentCopy <your_agent_name> 
 ```
 You can now run your agent via:
 ```
