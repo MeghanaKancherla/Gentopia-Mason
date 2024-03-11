@@ -66,11 +66,13 @@ Sometimes an agent can upset you. To wipe it out completely,
 ```
 ## Implementing GoogleSearch and PDF reader
 In this trail, I have implemented the GoogleSearch method within the Scholar agent, since the google_search is already defined under tools, I had to only use this in the agent.yaml file. 
-The pdf reader which I have implemented, the user searches for a paper and it is being searhed with the 'google_search' tool and returns pdf download url, then this url is read by pdf reader tool to answer the question.
+The pdf reader which I have implemented, the user searches for a paper and it is being searhed with the 'google_search' tool and returns pdf download url, then this url is read by pdf reader tool to answer the question. The pdf reader 'search_pdf.py' is implemented in ./Gentopia/gentopia/tools/
 
 ```
 pip install PyPDF2
 ```
+
+To clone the agent use, 
 ```
 ./clone_agent scholar <your_agent_name> 
 ```
