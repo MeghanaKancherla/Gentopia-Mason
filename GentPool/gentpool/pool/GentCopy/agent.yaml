@@ -4,7 +4,7 @@ version: 0.0.1
 description: you are a GentCopy.
 target_tasks:
   - find calculations
-  - find google_scholar
+  - find google_search
   - find text_to_speech
 prompt_template: !prompt VanillaPrompt
 llm: 
@@ -16,5 +16,6 @@ llm:
     max_tokens: 4096
 plugins: 
   - name: calculator
-  - name: google_scholar
+  - name: google_search
+  - name: wikipedia
   - name: text_to_speech
